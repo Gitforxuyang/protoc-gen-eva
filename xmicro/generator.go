@@ -1,6 +1,7 @@
 package xmicro
 
 import (
+	"fmt"
 	"github.com/golang/protobuf/protoc-gen-go/descriptor"
 	"github.com/golang/protobuf/protoc-gen-go/generator"
 )
@@ -8,6 +9,10 @@ import (
 type XMicroPlugin struct {
 	g *generator.Generator
 }
+
+//func (m *XMicroPlugin) GenerateImports(file *generator.FileDescriptor, imports map[generator.GoImportPath]generator.GoPackageName) {
+//	m.genImportCode(file)
+//}
 
 func init(){
 	generator.RegisterPlugin(new(XMicroPlugin))
@@ -32,7 +37,9 @@ func (m *XMicroPlugin) Generate(files *generator.FileDescriptor){
 
 func (m *XMicroPlugin) genImportCode(file *generator.FileDescriptor){
 	m.g.P("// todo: genImportCode")
+	m.g.P(fmt.Sprintf("// %s",*file.Name))
 }
 func (m *XMicroPlugin) genServiceCode(svc *descriptor.ServiceDescriptorProto){
 	m.g.P("// todo :genServiceCode ")
+	m.g.P(fmt.Sprintf("// %s",*svc.Name))
 }
