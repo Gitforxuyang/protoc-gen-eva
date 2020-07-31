@@ -4,10 +4,17 @@
 package main
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
+	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
+
+// todo: genImportCode
+// hello.proto
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -74,4 +81,86 @@ var fileDescriptor_61ef911816e0a8ce = []byte{
 	0x82, 0x53, 0x8b, 0xca, 0x32, 0x93, 0x53, 0x85, 0x94, 0xb9, 0x58, 0xc1, 0x7c, 0x21, 0x1e, 0x3d,
 	0x90, 0x7e, 0x3d, 0x88, 0x66, 0x29, 0x14, 0x5e, 0x12, 0x1b, 0xd8, 0x06, 0x63, 0x40, 0x00, 0x00,
 	0x00, 0xff, 0xff, 0xa1, 0x2a, 0xa2, 0x5a, 0x70, 0x00, 0x00, 0x00,
+}
+
+// todo :genServiceCode
+// HelloService
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConnInterface
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion6
+
+// HelloServiceClient is the client API for HelloService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type HelloServiceClient interface {
+	Hello(ctx context.Context, in *String, opts ...grpc.CallOption) (*String, error)
+}
+
+type helloServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewHelloServiceClient(cc grpc.ClientConnInterface) HelloServiceClient {
+	return &helloServiceClient{cc}
+}
+
+func (c *helloServiceClient) Hello(ctx context.Context, in *String, opts ...grpc.CallOption) (*String, error) {
+	out := new(String)
+	err := c.cc.Invoke(ctx, "/main.HelloService/Hello", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// HelloServiceServer is the server API for HelloService service.
+type HelloServiceServer interface {
+	Hello(context.Context, *String) (*String, error)
+}
+
+// UnimplementedHelloServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedHelloServiceServer struct {
+}
+
+func (*UnimplementedHelloServiceServer) Hello(ctx context.Context, req *String) (*String, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Hello not implemented")
+}
+
+func RegisterHelloServiceServer(s *grpc.Server, srv HelloServiceServer) {
+	s.RegisterService(&_HelloService_serviceDesc, srv)
+}
+
+func _HelloService_Hello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(String)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HelloServiceServer).Hello(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/main.HelloService/Hello",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HelloServiceServer).Hello(ctx, req.(*String))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _HelloService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "main.HelloService",
+	HandlerType: (*HelloServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Hello",
+			Handler:    _HelloService_Hello_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "hello.proto",
 }
