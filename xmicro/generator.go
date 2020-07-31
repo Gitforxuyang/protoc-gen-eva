@@ -18,7 +18,7 @@ func init(){
 	generator.RegisterPlugin(new(XMicroPlugin))
 }
 func (m *XMicroPlugin) Name() string{
-	return "xmicro"
+	return "eva"
 }
 func (m *XMicroPlugin) Init(g *generator.Generator) {
 	m.g=g

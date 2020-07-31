@@ -1,4 +1,4 @@
 
 
 proto:
-	protoc -I=./examples --xmicro_out=plugins=xmicro:./examples/hello hello.proto
+	protoc -I=./examples --eva_out=plugins=eva:./examples/hello hello.proto
