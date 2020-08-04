@@ -5,4 +5,4 @@ proto:
 
 
 grpc:
-	protoc -I=./examples --go_out=plugins=grpc:./examples/hello hello.proto
+	protoc -I=./examples --go_out=plugins=grpc:./examples hello.proto
