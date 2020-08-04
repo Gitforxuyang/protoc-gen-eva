@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 const (
-	MODE_EVA="eva"
+	MODE_EVA="all"
 	MODE_SERVER="server"
 	MODE_CLIENT="client"
 )

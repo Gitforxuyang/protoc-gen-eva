@@ -1,8 +1,8 @@
 
 
 proto:
-	rm ./examples/*.eva.go
-	protoc  -I=./examples --eva_out=plugins=client:./examples hello.proto
+	-rm ./examples/*.eva.go
+	protoc  -I=./examples --eva_out=plugins=all:./examples hello.proto
 
 
 grpc:

@@ -499,7 +499,7 @@ func (g *Generator) CommandLineParameters(parameter string) {
 	}
 	//g.Fail(pluginList)
 	if pluginList != "" {
-		if pluginList=="eva"||pluginList=="server+client"{
+		if pluginList=="all"||pluginList=="server+client"{
 			g.suffix="all"
 		}
 		if pluginList=="server"{

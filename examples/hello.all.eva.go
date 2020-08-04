@@ -10,3 +10,7 @@ import (
 type ISayHelloServiceServer interface {
 	Hello(ctx context.Context, req *String_Data) (resp *String, err error)
 }
+
+type ISayHelloServiceClient interface {
+	Hello(ctx context.Context, req *String_Data) (resp *String, err error)
+}
