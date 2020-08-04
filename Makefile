@@ -1,7 +1,7 @@
 
 
 proto:
-	protoc  -I=./examples --eva_out=plugins=eva+grpc:./examples/hello hello.proto
+	protoc  -I=./examples --eva_out=plugins=eva:./examples hello.proto
 
 
 grpc:
