@@ -307,12 +307,12 @@ func (d *FileDescriptor) goPackageOption() (impPath GoImportPath, pkg GoPackageN
 }
 
 // goFileName returns the output name for the generated Go file.
-func (d *FileDescriptor) goFileName(pathType pathType) string {
+func (d *FileDescriptor) goFileName(pathType pathType,suffix string) string {
 	name := *d.Name
 	if ext := path.Ext(name); ext == ".proto" || ext == ".protodevel" {
 		name = name[:len(name)-len(ext)]
 	}
-	name += ".eva.go"
+	name += "."+suffix+".eva.go"
 
 	if pathType == pathTypeSourceRelative {
 		return name
@@ -424,6 +424,7 @@ type Generator struct {
 	indent           string
 	pathType         pathType // How to generate output filenames.
 	writeOutput      bool
+	suffix string //文件名的后缀
 }
 
 type pathType int
@@ -468,6 +469,8 @@ func (g *Generator) CommandLineParameters(parameter string) {
 			g.Param[p[0:i]] = p[i+1:]
 		}
 	}
+	//bytes,_:=json.Marshal(g.Param)
+	//g.Fail(string(bytes))
 
 	g.ImportMap = make(map[string]string)
 	pluginList := "none" // Default list of plugin names to enable (empty means all).
@@ -494,10 +497,23 @@ func (g *Generator) CommandLineParameters(parameter string) {
 			}
 		}
 	}
+	//g.Fail(pluginList)
 	if pluginList != "" {
+		if pluginList=="eva"||pluginList=="server+client"{
+			g.suffix="all"
+		}
+		if pluginList=="server"{
+			g.suffix="server"
+		}
+		if pluginList=="client"{
+			g.suffix="client"
+		}
+		if g.suffix==""{
+			g.Fail("plugins参数异常")
+		}
 		// Amend the set of plugins.
 		enabled := map[string]bool{
-			"micro": true,
+			//"micro": true,
 		}
 		for _, name := range strings.Split(pluginList, "+") {
 			enabled[name] = true
@@ -1071,7 +1087,7 @@ func (g *Generator) GenerateAllFiles() {
 		if !g.writeOutput {
 			continue
 		}
-		fname := file.goFileName(g.pathType)
+		fname := file.goFileName(g.pathType,g.suffix)
 		g.Response.File = append(g.Response.File, &plugin.CodeGeneratorResponse_File{
 			Name:    proto.String(fname),
 			Content: proto.String(g.String()),

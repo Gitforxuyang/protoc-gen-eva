@@ -6,9 +6,14 @@ import (
 	"github.com/golang/protobuf/protoc-gen-go/descriptor"
 	"strings"
 )
-
+const (
+	MODE_EVA="eva"
+	MODE_SERVER="server"
+	MODE_CLIENT="client"
+)
 type EvaPlugin struct {
 	g *generator.Generator
+	mode string //模式  eva默认模式 server-只生成server client-只生成client
 }
 
 //func (m *EvaPlugin) GenerateImports(file *generator.FileDescriptor, imports map[generator.GoImportPath]generator.GoPackageName) {
@@ -16,10 +21,12 @@ type EvaPlugin struct {
 //}
 
 func init(){
-	generator.RegisterPlugin(new(EvaPlugin))
+	generator.RegisterPlugin(&EvaPlugin{mode:MODE_EVA})
+	generator.RegisterPlugin(&EvaPlugin{mode:MODE_SERVER})
+	generator.RegisterPlugin(&EvaPlugin{mode:MODE_CLIENT})
 }
 func (m *EvaPlugin) Name() string{
-	return "eva"
+	return m.mode
 }
 func (m *EvaPlugin) Init(g *generator.Generator) {
 	m.g=g
@@ -36,8 +43,16 @@ func (m *EvaPlugin) Generate(files *generator.FileDescriptor){
 		return
 	}
 	for _,svc:=range files.Service{
-		m.genServerCode(svc)
-		m.genClientCode(svc)
+		if m.mode==MODE_EVA{
+			m.genServerCode(svc)
+			m.genClientCode(svc)
+		}
+		if m.mode==MODE_SERVER{
+			m.genServerCode(svc)
+		}
+		if m.mode==MODE_CLIENT{
+			m.genServerCode(svc)
+		}
 	}
 }
 
