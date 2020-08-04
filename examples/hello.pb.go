@@ -76,14 +76,14 @@ func (x *String) GetName() string {
 	return ""
 }
 
-type Data struct {
+type String_Data struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *Data) Reset() {
-	*x = Data{}
+func (x *String_Data) Reset() {
+	*x = String_Data{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_hello_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -91,13 +91,13 @@ func (x *Data) Reset() {
 	}
 }
 
-func (x *Data) String() string {
+func (x *String_Data) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Data) ProtoMessage() {}
+func (*String_Data) ProtoMessage() {}
 
-func (x *Data) ProtoReflect() protoreflect.Message {
+func (x *String_Data) ProtoReflect() protoreflect.Message {
 	mi := &file_hello_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -109,22 +109,23 @@ func (x *Data) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Data.ProtoReflect.Descriptor instead.
-func (*Data) Descriptor() ([]byte, []int) {
-	return file_hello_proto_rawDescGZIP(), []int{1}
+// Deprecated: Use String_Data.ProtoReflect.Descriptor instead.
+func (*String_Data) Descriptor() ([]byte, []int) {
+	return file_hello_proto_rawDescGZIP(), []int{0, 0}
 }
 
 var File_hello_proto protoreflect.FileDescriptor
 
 var file_hello_proto_rawDesc = []byte{
 	0x0a, 0x0b, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x05, 0x68,
-	0x65, 0x6c, 0x6c, 0x6f, 0x22, 0x1c, 0x0a, 0x06, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x12, 0x12,
+	0x65, 0x6c, 0x6c, 0x6f, 0x22, 0x24, 0x0a, 0x06, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x12, 0x12,
 	0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61,
-	0x6d, 0x65, 0x22, 0x06, 0x0a, 0x04, 0x44, 0x61, 0x74, 0x61, 0x32, 0x38, 0x0a, 0x0f, 0x53, 0x61,
-	0x79, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x25, 0x0a,
-	0x05, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x12, 0x0d, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x2e, 0x53,
-	0x74, 0x72, 0x69, 0x6e, 0x67, 0x1a, 0x0d, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x2e, 0x53, 0x74,
-	0x72, 0x69, 0x6e, 0x67, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6d, 0x65, 0x1a, 0x06, 0x0a, 0x04, 0x44, 0x61, 0x74, 0x61, 0x32, 0x3d, 0x0a, 0x0f, 0x53, 0x61,
+	0x79, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x2a, 0x0a,
+	0x05, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x12, 0x12, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x2e, 0x53,
+	0x74, 0x72, 0x69, 0x6e, 0x67, 0x2e, 0x44, 0x61, 0x74, 0x61, 0x1a, 0x0d, 0x2e, 0x68, 0x65, 0x6c,
+	0x6c, 0x6f, 0x2e, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
@@ -141,11 +142,11 @@ func file_hello_proto_rawDescGZIP() []byte {
 
 var file_hello_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_hello_proto_goTypes = []interface{}{
-	(*String)(nil), // 0: hello.String
-	(*Data)(nil),   // 1: hello.Data
+	(*String)(nil),      // 0: hello.String
+	(*String_Data)(nil), // 1: hello.String.Data
 }
 var file_hello_proto_depIdxs = []int32{
-	0, // 0: hello.SayHelloService.Hello:input_type -> hello.String
+	1, // 0: hello.SayHelloService.Hello:input_type -> hello.String.Data
 	0, // 1: hello.SayHelloService.Hello:output_type -> hello.String
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
@@ -173,7 +174,7 @@ func file_hello_proto_init() {
 			}
 		}
 		file_hello_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Data); i {
+			switch v := v.(*String_Data); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -217,7 +218,7 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type SayHelloServiceClient interface {
-	Hello(ctx context.Context, in *String, opts ...grpc.CallOption) (*String, error)
+	Hello(ctx context.Context, in *String_Data, opts ...grpc.CallOption) (*String, error)
 }
 
 type sayHelloServiceClient struct {
@@ -228,7 +229,7 @@ func NewSayHelloServiceClient(cc grpc.ClientConnInterface) SayHelloServiceClient
 	return &sayHelloServiceClient{cc}
 }
 
-func (c *sayHelloServiceClient) Hello(ctx context.Context, in *String, opts ...grpc.CallOption) (*String, error) {
+func (c *sayHelloServiceClient) Hello(ctx context.Context, in *String_Data, opts ...grpc.CallOption) (*String, error) {
 	out := new(String)
 	err := c.cc.Invoke(ctx, "/hello.SayHelloService/Hello", in, out, opts...)
 	if err != nil {
@@ -239,14 +240,14 @@ func (c *sayHelloServiceClient) Hello(ctx context.Context, in *String, opts ...g
 
 // SayHelloServiceServer is the server API for SayHelloService service.
 type SayHelloServiceServer interface {
-	Hello(context.Context, *String) (*String, error)
+	Hello(context.Context, *String_Data) (*String, error)
 }
 
 // UnimplementedSayHelloServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedSayHelloServiceServer struct {
 }
 
-func (*UnimplementedSayHelloServiceServer) Hello(context.Context, *String) (*String, error) {
+func (*UnimplementedSayHelloServiceServer) Hello(context.Context, *String_Data) (*String, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Hello not implemented")
 }
 
@@ -255,7 +256,7 @@ func RegisterSayHelloServiceServer(s *grpc.Server, srv SayHelloServiceServer) {
 }
 
 func _SayHelloService_Hello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(String)
+	in := new(String_Data)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -267,7 +268,7 @@ func _SayHelloService_Hello_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: "/hello.SayHelloService/Hello",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SayHelloServiceServer).Hello(ctx, req.(*String))
+		return srv.(SayHelloServiceServer).Hello(ctx, req.(*String_Data))
 	}
 	return interceptor(ctx, in, info, handler)
 }

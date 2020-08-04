@@ -4,10 +4,9 @@ package hello;
 
 message String {
     string name=1;
-}
-message Data{
-
+    message Data{
+    }
 }
 service SayHelloService {
-    rpc Hello (String) returns (String);
+    rpc Hello (String.Data) returns (String);
 }
