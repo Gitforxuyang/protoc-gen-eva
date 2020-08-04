@@ -3,8 +3,9 @@ package main
 import (
 	_ "github.com/Gitforxuyang/protoc-gen-eva/eva"
 	"github.com/golang/protobuf/proto"
-	"github.com/golang/protobuf/protoc-gen-go/generator"
-	_ "github.com/golang/protobuf/protoc-gen-go/grpc"
+	"github.com/Gitforxuyang/protoc-gen-eva/generator"
+	//"github.com/golang/protobuf/protoc-gen-go/generator"
+	//_ "github.com/golang/protobuf/protoc-gen-go/grpc"
 	"io/ioutil"
 	"os"
 )

@@ -3,7 +3,7 @@ package eva
 import (
 	"fmt"
 	"github.com/golang/protobuf/protoc-gen-go/descriptor"
-	"github.com/golang/protobuf/protoc-gen-go/generator"
+	"github.com/Gitforxuyang/protoc-gen-eva/generator"
 )
 
 type XMicroPlugin struct {
@@ -23,11 +23,17 @@ func (m *XMicroPlugin) Name() string{
 func (m *XMicroPlugin) Init(g *generator.Generator) {
 	m.g=g
 }
-func (m *XMicroPlugin) GenerateImports(files *generator.FileDescriptor){
-	if len(files.Service)>0{
-		m.genImportCode(files)
+func (m *XMicroPlugin) GenerateImports(file *generator.FileDescriptor, imports map[generator.GoImportPath]generator.GoPackageName){
+	if len(file.Service)>0{
+		m.genImportCode(file)
 	}
 }
+//
+//func (m *XMicroPlugin) GenerateImports(files *generator.FileDescriptor){
+//	if len(files.Service)>0{
+//		m.genImportCode(files)
+//	}
+//}
 
 func (m *XMicroPlugin) Generate(files *generator.FileDescriptor){
 	for _,svc:=range files.Service{
