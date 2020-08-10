@@ -1,12 +1,21 @@
 syntax = "proto3";
 
+
+import "google/api/annotations.proto";
+import "google/protobuf/wrappers.proto";
 package hello;
 
 message String {
     string name=1;
+    google.protobuf.Int32Value medalCount = 27;
     message Data{
     }
 }
 service SayHelloService {
-    rpc Hello (String.Data) returns (String);
+    rpc Hello (String) returns (String){
+        option (google.api.http) = {
+          post: "/ping"
+          body: "*"
+       };
+    };
 }
